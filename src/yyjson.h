@@ -5388,8 +5388,8 @@ yyjson_api_inline void yyjson_doc_free(yyjson_doc *doc) {
     if (doc) {
         yyjson_alc alc = doc->alc;
         memset(&doc->alc, 0, sizeof(alc));
-        if (doc->str_pool) alc.free(alc.ctx, doc->str_pool);
-        alc.free(alc.ctx, doc);
+        if (doc->str_pool) (alc.free)(alc.ctx, doc->str_pool);
+        (alc.free)(alc.ctx, doc);
     }
 }
 

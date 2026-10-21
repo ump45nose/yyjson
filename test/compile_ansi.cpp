@@ -3,6 +3,17 @@
  It should be able to compile successfully in C++ environments.
 */
 
+#include <stdlib.h>
+
+/* The public header must tolerate function-like allocator macros. */
+#define malloc(size) test_malloc(size)
+#define realloc(ptr, size) test_realloc(ptr, size)
+#define free(ptr) test_free(ptr)
+#include "yyjson.h"
+#undef malloc
+#undef realloc
+#undef free
+
 #include "yyjson.c"
 
 int main(void) {
